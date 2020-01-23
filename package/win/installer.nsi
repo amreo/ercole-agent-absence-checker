@@ -22,9 +22,8 @@ Section "MainSection" SEC01
   SetOverwrite ifnewer
   File "..\..\ercole-agent-absence-checker.exe"
   File "..\..\config.json"
-  File /r "..\..\sql"
   SetOutPath "$INSTDIR\fetch"
-  File /r "..\..\fetch\win.ps1"
+  File /r "..\..\fetch\*.ps1"
   SimpleSC::InstallService "ErcoleAgentAbsenceChecker" "Ercole Agent Absence Checker" "16" "2" "$INSTDIR\ercole-agent-absence-checker.exe" "" "" ""
 SectionEnd
 

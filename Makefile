@@ -2,18 +2,18 @@
 
 DESTDIR=build
 
-all: ercole-agent
+all: ercole-agent-absence-checker
 
-default: ercole-agent 
+default: ercole-agent-absence-checker
 
 clean:
-	rm -rf ercole-agent build ercole-agent.exe *.exe
+	rm -rf ercole-agent-absence-checker build ercole-agent-absence-checker.exe *.exe
 
 ercole-agent:
-	GO111MODULE=on CGO_ENABLED=0 go build -mod=vendor -o ercole-agent -a -x
+	GO111MODULE=on CGO_ENABLED=0 go build -o ercole-agent-absence-checker -a -x
 
 windows:
-	GOOS=windows GOARCH=amd64 GO111MODULE=on CGO_ENABLED=0 go build -mod=vendor -o ercole-agent.exe -a -x
+	GOOS=windows GOARCH=amd64 GO111MODULE=on CGO_ENABLED=0 go build -o ercole-agent-absence-checker.exe -a -x
 
 nsis: windows 
 	makensis package/win/installer.nsi
@@ -23,11 +23,10 @@ install: all install-fetchers install-bin install-bin install-config install-scr
 install-fetchers:
 	install -d $(DESTDIR)/fetch
 	cp -rp fetch/* $(DESTDIR)/fetch
-	rm $(DESTDIR)/fetch/win.ps1
+	rm $(DESTDIR)/fetch/*.ps1
 
 install-bin:
-	install -m 755 ercole-agent $(DESTDIR)/ercole-agent
-	install -m 755 package/ercole-setup $(DESTDIR)/ercole-setup
+	install -m 755 ercole-agent-absence-checker $(DESTDIR)/ercole-agent-absence-checker
 
 install-scripts:
 	install -d $(DESTDIR)/sql
