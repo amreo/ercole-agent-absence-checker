@@ -7,7 +7,7 @@
 !define PRODUCT_WEB_SITE "https://www.sorint.it"
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "..\..\ercole-agent-setup-${PRODUCT_VERSION}.exe"
+OutFile "..\..\ercole-agent-absence-checker-setup-${PRODUCT_VERSION}.exe"
 LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"
 #LoadPlugin "SimpleSC.dll"
 InstallDir "C:\ErcoleAgentAbsenceChecker"
