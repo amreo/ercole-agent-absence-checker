@@ -1,0 +1,6 @@
+debug
+/ercole-agent-absence-checker
+*.exe
+build
+with.lst
+.vscode

@@ -1,0 +1,8 @@
+{
+    "serverurl": "http://localhost:9080/alerts/missing-host",
+    "serverusr": "user",
+    "serverpsw": "password",
+    "frequency": 24,
+    "enableservervalidation": false,
+    "forcepwshversion": "0"
+}
