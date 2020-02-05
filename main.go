@@ -23,6 +23,7 @@ import (
 	"net/http"
 	"os/exec"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/amreo/ercole-agent-absence-checker/config"
@@ -139,8 +140,6 @@ func fetcher(configuration config.Configuration, fetcherName string, params ...s
 		stderr bytes.Buffer
 	)
 
-	log.Println("Fetching", fetcherName)
-
 	baseDir := config.GetBaseDir()
 
 	if runtime.GOOS == "windows" {
@@ -153,8 +152,10 @@ func fetcher(configuration config.Configuration, fetcherName string, params ...s
 		} else {
 			params = append([]string{"-version", configuration.ForcePwshVersion, "-ExecutionPolicy", "Bypass", "-File", baseDir + "\\fetch\\win.ps1", "-s", fetcherName}, params...)
 		}
+		log.Println("Fetching " + psexe + " " + strings.Join(params, " "))
 		cmd = exec.Command(psexe, params...)
 	} else {
+		log.Println("Fetching " + baseDir + "/fetch/" + fetcherName + " " + strings.Join(params, " "))
 		cmd = exec.Command(baseDir+"/fetch/"+fetcherName, params...)
 	}
 
